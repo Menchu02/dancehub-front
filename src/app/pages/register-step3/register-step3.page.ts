@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { IonButton, IonContent } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-register-step3',
   templateUrl: './register-step3.page.html',
   styleUrls: ['./register-step3.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonButton],
 })
-export class RegisterStep3Page implements OnInit {
+export class RegisterStep3Page {
 
-  constructor() { }
+  private router = inject(Router);
 
-  ngOnInit() {
+  createAccount(): void {
+    this.router.navigate(['/tabs']);
+  }
+
+  goBack(): void {
+    this.router.navigate(['/register-step2']);
   }
 
 }
