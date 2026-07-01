@@ -1,6 +1,133 @@
-<ion-content [fullscreen]="true">
-  <div class="step-actions">
-    <ion-button expand="block" (click)="goToStep2()">Continuar</ion-button>
-    <ion-button expand="block" fill="outline" (click)="goBack()">Volver</ion-button>
-  </div>
+<ion-content class="register-content" [fullscreen]="true">
+  <form class="register-form" [formGroup]="registerForm" (ngSubmit)="goToStep2()">
+    <button type="button" class="back-btn" aria-label="Volver" (click)="goBack()">
+      <ion-icon name="chevron-back"></ion-icon>
+    </button>
+
+    <header class="register-header">
+      <h1>Crear cuenta</h1>
+      <p class="step-label">Paso 1 de 3</p>
+    </header>
+
+    <div class="progress-track" aria-hidden="true">
+      <span class="progress-dot active"></span>
+      <span class="progress-line active"></span>
+      <span class="progress-dot"></span>
+      <span class="progress-line"></span>
+      <span class="progress-dot"></span>
+    </div>
+
+    <section class="form-section">
+      <h2>Información básica</h2>
+
+      <div class="field">
+        <label for="fullName">Nombre completo</label>
+        <div class="input-wrapper">
+          <ion-icon name="person-outline" class="field-icon"></ion-icon>
+          <ion-input
+            id="fullName"
+            type="text"
+            formControlName="fullName"
+            placeholder="Tu nombre"
+            aria-label="Nombre completo"
+            autocomplete="fullName"
+          ></ion-input>
+        </div>
+        @if (fullName.invalid && fullName.touched) {
+          <ion-text color="danger">
+            <p class="error-text">El nombre es obligatorio.</p>
+          </ion-text>
+        }
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <div class="input-wrapper">
+          <ion-icon name="mail-outline" class="field-icon"></ion-icon>
+          <ion-input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="tu@email.com"
+            aria-label="Email"
+            autocomplete="email"
+          ></ion-input>
+        </div>
+        @if (email.invalid && email.touched) {
+          <ion-text color="danger">
+            <p class="error-text">
+              @if (email.errors?.['required']) {
+                El email es obligatorio.
+              } @else {
+                Introduce un email válido.
+              }
+            </p>
+          </ion-text>
+        }
+      </div>
+
+      <div class="field">
+        <label for="password">Contraseña</label>
+        <div class="input-wrapper">
+          <ion-icon name="lock-closed-outline" class="field-icon"></ion-icon>
+          <ion-input
+            id="password"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="••••••••"
+            aria-label="Contraseña"
+            autocomplete="password"
+
+
+          ></ion-input>
+          <button
+            type="button"
+            class="toggle-password"
+            aria-label="Mostrar u ocultar contraseña"
+            (click)="togglePassword()"
+          >
+            <ion-icon [name]="showPassword ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+          </button>
+        </div>
+        @if (password.invalid && password.touched) {
+          <ion-text color="danger">
+            <p class="error-text">
+              @if (password.errors?.['required']) {
+                La contraseña es obligatoria.
+              } @else {
+                La contraseña debe tener al menos 8 caracteres.
+              }
+            </p>
+          </ion-text>
+        }
+      </div>
+    </section>
+
+    <section class="disciplines-section">
+      <h2>Disciplina(s) de baile</h2>
+      <p class="section-hint">Selecciona tus preferencias</p>
+
+      <div class="discipline-chips">
+        @for (discipline of disciplines; track discipline.id) {
+          <button
+            type="button"
+            class="discipline-chip"
+            [class.selected]="isDisciplineSelected(discipline.id)"
+            (click)="toggleDiscipline(discipline.id)"
+          >
+            {{ discipline.label }}
+          </button>
+        }
+      </div>
+      @if (disciplinesTouched && selectedDisciplineIds.length === 0) {
+        <ion-text color="danger">
+          <p class="error-text">Selecciona al menos una disciplina.</p>
+        </ion-text>
+      }
+    </section>
+
+    <ion-button class="continue-btn" type="submit" expand="block" shape="round">
+      Continuar
+    </ion-button>
+  </form>
 </ion-content>

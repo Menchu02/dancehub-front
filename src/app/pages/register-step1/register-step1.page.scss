@@ -1,0 +1,212 @@
+$primary: #7044d1;
+$text-dark: #1a1a2e;
+$text-muted: #8b8b9e;
+$border-color: #e8e8ef;
+$chip-border: #e0e0ea;
+
+.register-content {
+  --background: #ffffff;
+}
+
+.register-form {
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + 0.75rem) 1.5rem calc(env(safe-area-inset-bottom) + 1.5rem);
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 0 0.5rem -0.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: $text-dark;
+  cursor: pointer;
+
+  ion-icon {
+    font-size: 1.5rem;
+  }
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 1.25rem;
+
+  h1 {
+    margin: 0;
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: $text-dark;
+  }
+}
+
+.step-label {
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+  color: $text-muted;
+}
+
+.progress-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.progress-dot {
+  flex-shrink: 0;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: $border-color;
+
+  &.active {
+    background: $primary;
+  }
+}
+
+.progress-line {
+  flex: 1;
+  max-width: 4.5rem;
+  height: 2px;
+  background: $border-color;
+
+  &.active {
+    background: $primary;
+  }
+}
+
+.form-section,
+.disciplines-section {
+  margin-bottom: 1.75rem;
+
+  h2 {
+    margin: 0 0 1rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: $text-dark;
+  }
+}
+
+.section-hint {
+  margin: -0.5rem 0 1rem;
+  font-size: 0.875rem;
+  color: $text-muted;
+}
+
+.field {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $text-muted;
+  }
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3.25rem;
+  padding: 0 1rem;
+  border: 1.5px solid $border-color;
+  border-radius: 1rem;
+  background: #ffffff;
+  transition: border-color 0.2s ease;
+
+  &:focus-within {
+    border-color: rgba($primary, 0.55);
+  }
+
+  .field-icon {
+    flex-shrink: 0;
+    font-size: 1.2rem;
+    color: $primary;
+  }
+
+  ion-input {
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    --placeholder-color: #b8b8c8;
+    --placeholder-opacity: 1;
+    --color: #{$text-dark};
+    font-size: 0.95rem;
+  }
+}
+
+.toggle-password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: $primary;
+  cursor: pointer;
+
+  ion-icon {
+    font-size: 1.2rem;
+  }
+}
+
+.error-text {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+}
+
+.discipline-chips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+}
+
+.discipline-chip {
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid $chip-border;
+  border-radius: 999px;
+  background: #ffffff;
+  color: $text-dark;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &.selected {
+    border-color: $primary;
+    background: $primary;
+    color: #ffffff;
+  }
+}
+
+.continue-btn {
+  --background: #{$primary};
+  --background-hover: #5f36b8;
+  --background-activated: #522ea3;
+  --border-radius: 999px;
+  --box-shadow: 0 8px 20px rgba(112, 68, 209, 0.28);
+  --color: #ffffff;
+  margin-top: 0.5rem;
+  height: 3.25rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
